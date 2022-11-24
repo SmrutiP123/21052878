@@ -1,0 +1,91 @@
+#include<iostream>
+using namespace std;
+
+class stock{                           
+    protected:
+     int q_A;
+     int q_A_;
+     int q_B;
+     int q_B_;
+     int q_O;
+     int q_O_;
+    public:
+    virtual void get_blood_group()=0;     
+
+};                                         
+
+class update:public stock{                 
+    string blood_group;
+    int quantity;
+    string name_patient;
+
+    public:
+    update(){                                       
+        q_A=q_A_=q_B=q_B_=q_O=q_O_=10;
+    }
+    ~update(){};                                    
+    void get_blood_group(){
+        cout<<"Enter the blood group you want:";
+        cin>>blood_group;
+       }
+     void get_quantity(){
+         cout<<"Enter the number of blood packets you want:";
+         cin>>quantity;
+     }
+     void update_stock(){
+         if(blood_group=="A+")
+         q_A-=quantity;
+         else if(blood_group=="A-")
+         q_A_-=quantity;
+         else if(blood_group=="B-")
+         q_B_-=quantity;
+         else if(blood_group=="B+")
+         q_B-=quantity;
+         else if(blood_group=="O-")
+         q_O_-=quantity;
+         else if(blood_group=="O+")
+         q_O-=quantity;
+         else
+         cout<<"NOT PRESENT!!";
+     }
+     void show_group(){
+         cout<<"\nBLOOD GROUP="<<blood_group;
+     }
+     void show_stock(){
+         cout<<"\t     A+="<<q_A;
+         cout<<"\t\t     A-="<<q_A_;
+         cout<<"\n\t     B+="<<q_B;
+         cout<<"\t\t     B-="<<q_B_;
+         cout<<"\n\t     O-="<<q_O_;
+         cout<<"\t\t     O+="<<q_O;
+         cout<<"\n\n";
+     }
+     void get_name(){
+         cout<<"\tEnter name of patient:";
+         cin>>name_patient;
+     }
+     void show_name(){
+         cout<<"Name="<<name_patient;
+     }
+     
+};
+
+int main(){
+    cout<<"\n";
+    
+    update obj;
+    cout<<"\t\tAvailable Stock Before Updation:\n";
+    cout<<"\n";
+    obj.show_stock();    
+    obj.get_name();
+    obj.get_blood_group();
+    cout<<endl;
+    obj.get_quantity();
+    obj.update_stock();
+    cout<<"\n";
+    cout<<"\t\tSo the Available Stock After Updation\n";
+    cout<<"\n";
+   
+    obj.show_stock();
+    
+}
